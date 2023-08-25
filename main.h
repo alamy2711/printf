@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
+
 /**
  * struct formatter - A struct of specifiers with their
  * corresponding print's function
@@ -28,9 +29,21 @@ int print_number(long num);
 int printf_x_or_X(unsigned int num, int IsLower);
 int handleLH(const char *s, int *i, va_list ar_ls);
 int print_largeNum(unsigned long num);
-int print_large_octal(unsigned long num);
 
 int customFunction_flag(int num, const char *s, int n, int le, va_list ls);
+int printf_Lu(va_list u);
+int print_base(va_list u, int base, int iUpper);
+
+/*handle task 9 cases %*d and %6d */
+int Handle_digits_Field(const char *s, int *i, va_list ar_ls);
+int Handle_Char_Field(const char *s, int *i, va_list ar_ls);
+int Handle_Star_Field(const char *s, int *i, va_list ar_ls);
+int Handle_char_with_star(const char *s, int *i, va_list ar_ls);
+int Handle_Star_Field_2(const char *s, int *i, va_list ar_ls);
+int _lentofInt(long num);
+char *_ConverTobase(unsigned long num, int base, int iUpper);
+int _strlen(char *s);
+int _isdig(int);
 
 /* Specifiers functions */
 int printf_s(va_list);
