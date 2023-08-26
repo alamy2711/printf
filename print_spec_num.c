@@ -122,7 +122,6 @@ int get_flag(const char *s, int *i, va_list ar_ls)
 			le = customFunction_flag(num, s, n, le, ar_ls);
 		else if (s[n + 2] == 'X')
 			le = customFunction_flag(num, s, n, le, ar_ls);
-
 		n++;
 	}
 	n = (le == 0) ? keepI : n;
@@ -130,6 +129,11 @@ int get_flag(const char *s, int *i, va_list ar_ls)
 
 	if (le == 0)
 	le = handleLH(s, i, ar_ls);
+	if (le == 0)
+	{
+		le = Handle_digits_Field(s, i, ar_ls);
+	}
+
 	return (le);
 }
 
@@ -161,13 +165,15 @@ int handleLH(const char *s, int *i, va_list ar_ls)
 				lent += print_largeNum(va_arg(ar_ls, unsigned long));
 		}
 		if (s[n + 2] == 'o')
-			lent += printf_o(ar_ls);
+			lent += print_base(ar_ls, 8, 0);
 		if (s[n + 2] == 'x')
-			lent += printf_x(ar_ls);
+			lent += print_base(ar_ls, 16, 0);
 		if (s[n + 2] == 'X')
-			lent += printf_X(ar_ls);
-		if (s[n + 2] == 'u')
+			lent += print_base(ar_ls, 16, 1);
+		if (s[n + 2] == 'u' && s[n + 1] == 'h')
 			lent += printf_u(ar_ls);
+		else if (s[n + 2] == 'u' && s[n + 1] == 'l')
+			lent += printf_Lu(ar_ls);
 		n++;
 	}
 
